@@ -80,6 +80,11 @@ class Controller(
         itemUsedService.save(itemUsed, ItemUsedType.MEAL, id)
     }
 
+    @PutMapping("/meal/{id}/name")
+    fun renameMeal(@PathVariable id: UUID, @RequestBody name: String) {
+        mealService.renameMeal(id, name)
+    }
+
     @GetMapping("/day")
     fun getAllMealsPerDay(@RequestParam date: LocalDate): DayDto {
         return mealService.findAllByDate(date)

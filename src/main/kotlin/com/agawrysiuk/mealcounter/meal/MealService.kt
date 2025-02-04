@@ -81,4 +81,10 @@ class MealService(
             mealRepository.deleteById(mealId)
         }
     }
+
+    fun renameMeal(mealId: UUID, newName: String): MealDto {
+        val meal = mealRepository.findById(mealId).orElseThrow { BadRequestException("Meal $mealId does not exist") }
+        meal.name = newName
+        return mapToDto(mealRepository.save(meal), itemUsedService.findAllByForeignIdAndType(mealId, ItemUsedType.MEAL))
+    }
 }

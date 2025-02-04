@@ -7,6 +7,6 @@ import java.time.LocalDate
 @Entity
 @Table(name = "meal")
 class MealEntity(
-    val name: String,
+    var name: String,
     val mealDay: LocalDate,
 ) : BaseEntity()
